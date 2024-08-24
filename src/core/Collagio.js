@@ -1,5 +1,7 @@
 import { BaseCollage } from "/src/renderers/BaseCollage.js";
 import { CollageUtils } from "/src/utils/Utilities.js";
+import { FilterTypes } from "/src/utils/FilterTypes.js";
+
 /**
  * Represents a collage layout manager.
  * @class
@@ -7,7 +9,7 @@ import { CollageUtils } from "/src/utils/Utilities.js";
 export class Collagio {
    /**
     * Creates an instance of Collagio.
-    * @param {string} selector - The CSS selector for the container element.
+    * @param {string} selector - The CSS selector for the container element should be id.
     * @param {Object} [options={}] - Configuration options for the collage.
     * @param {Object} collages - Collage layout classes or a single class.
     * @throws {TypeError} Throws if the selector is not a string starting with "#" or options are invalid.
@@ -25,17 +27,17 @@ export class Collagio {
       if (options.layout && typeof options.layout !== "string") {
          throw new TypeError("Layout must be a string");
       }
+      if (options.imagePlaceholder && !Object.keys(FilterTypes).includes(options.imagePlaceholder)) {
+         throw new TypeError("Invalid imagePlaceholder type");
+      }
 
-      // Handle collages
       if (collages instanceof BaseCollage) {
-         // If collages is a single class
          this.collages = { default: collages.constructor };
          this.layout = options.layout || "default";
       } else if (typeof collages === "object" && Object.keys(collages).length > 0) {
-         // Check if each value in collages is a constructor of BaseCollage
          for (const [key, value] of Object.entries(collages)) {
             if (!(value.prototype instanceof BaseCollage)) {
-               throw new TypeError(`Value for layout "${key}" is not a constructor of [NAME]Collage.`);
+               throw new TypeError(`Value for layout "${key}" is not a constructor of BaseCollage.`);
             }
          }
          this.collages = collages;
@@ -56,6 +58,7 @@ export class Collagio {
       this.container = document.querySelector(selector);
       this.images = options.images || [];
       this.plugins = [];
+      this.imagePlaceholder = options.imagePlaceholder || false; // Set default value
 
       if (options.containerClass) {
          this.container.classList.add(...options.containerClass.split(" "));
@@ -76,16 +79,34 @@ export class Collagio {
 
    /**
     * Renders the collage based on the selected layout.
+    * Handles asynchronous updates to ensure images are displayed as soon as they are ready.
     */
-   render() {
+   async render() {
       this.container.innerHTML = "";
       const CollageClass = this.collages[this.layout] || this.collages.default;
       if (CollageClass) {
-         const collageInstance = new CollageClass(); // Instantiate the layout class
-         collageInstance.render(this.container, this.images, CollageUtils);
+         const collageInstance = new CollageClass();
+         await collageInstance.render(this.container, this.images, CollageUtils, this.imagePlaceholder);
       } else {
          console.error("No layout class available.");
       }
+   }
+
+   /**
+    * Update the layout
+    */
+   updateLayout() {
+      if (Object.keys(this.collages).length === 1) {
+         this.layout = Object.keys(this.collages)[0];
+      } else {
+         this.layout = this.options.layout || Object.keys(this.collages)[0];
+         if (!this.collages[this.layout]) {
+            throw new TypeError(
+               `Invalid layout "${this.layout}". Available layouts: ${Object.keys(this.collages).join(", ")}`,
+            );
+         }
+      }
+      this.render(); // Re-render with the new layout
    }
 
    /**

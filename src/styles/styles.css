@@ -1,13 +1,6 @@
 /* styles.css */
 
-.collagio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
-}
-
-.collagio-grid img {
-  width: 100%;
-  height: auto;
-  display: block;
+#gallery {
+   background-color: aqua;
+   padding: 15px;
 }
