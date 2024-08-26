@@ -58,4 +58,16 @@ export class CollageUtils {
    static async generateFilteredImage(url, size = 24, filter) {
       return generateFilteredImage(url, size, filter);
    }
+
+   /**
+    * Dynamically loads a CSS file by creating and appending a link element to the document head.
+    *
+    * @param {string} url - The URL of the CSS file to load.
+    */
+   static loadStylesheet(url) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = url;
+      document.head.appendChild(link);
+   }
 }

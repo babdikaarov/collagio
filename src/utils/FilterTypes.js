@@ -7,11 +7,11 @@
  * @property {string} SEPIA - Applies a sepia filter to the image.
  * @example
  * // Usage
- * const filterType = FilterTypes.BLUR_GRAYSCALE;
+ * const filterType = FilterTypes.BLUR;
  */
 export const FilterTypes = Object.freeze({
    BLUR_GRAYSCALE: "blur(4px) grayscale(100%)",
-   BLUR: "blur(4px) ",
+   BLUR: "blur(1px) ",
    BRIGHTNESS_CONTRAST: "brightness(120%) contrast(80%)",
    SEPIA: "sepia(100%)",
    // Add more filter types here

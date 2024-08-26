@@ -5,9 +5,9 @@ import { FilterTypes } from "./FilterTypes.js";
  * @param {string} url - The URL of the image.
  * @param {number} [size=24] - The size of the reduced image (e.g., 24x24 pixels).
  * @param {string} filter - The filter to apply.
- * @returns {Promise<HTMLImageElement>} - A promise that resolves to an HTMLImageElement with the filtered image.
+ * @returns {Promise<string>} -  A promise that resolves to a data URL of the filtered image.
  */
-export async function generateFilteredImage(url, size = 24, filter = FilterTypes.BLUR_GRAYSCALE) {
+export async function generateFilteredImage(url, size = 24, filter = FilterTypes.BLUR) {
    // Cache for filtered images
    const cache = generateFilteredImage.cache || (generateFilteredImage.cache = new Map());
 
@@ -34,14 +34,12 @@ export async function generateFilteredImage(url, size = 24, filter = FilterTypes
             ctx.drawImage(tempImage, 0, 0, size, size);
 
             const dataUrl = canvas.toDataURL("image/png");
-            const filteredImage = new Image();
-            filteredImage.src = dataUrl;
 
             // Cache the result
-            cache.set(cacheKey, filteredImage);
+            cache.set(cacheKey, dataUrl);
 
-            // Resolve with the filtered image
-            resolve(filteredImage);
+            // Resolve with the data URL
+            resolve(dataUrl);
          } else {
             reject(new Error("Failed to get canvas context"));
          }

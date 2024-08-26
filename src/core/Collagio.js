@@ -27,8 +27,8 @@ export class Collagio {
       if (options.layout && typeof options.layout !== "string") {
          throw new TypeError("Layout must be a string");
       }
-      if (options.imagePlaceholder && !Object.keys(FilterTypes).includes(options.imagePlaceholder)) {
-         throw new TypeError("Invalid imagePlaceholder type");
+      if (options.placeholderEffect && !Object.keys(FilterTypes).includes(options.placeholderEffect)) {
+         throw new TypeError("Invalid placeholderEffect type");
       }
 
       if (collages instanceof BaseCollage) {
@@ -58,7 +58,7 @@ export class Collagio {
       this.container = document.querySelector(selector);
       this.images = options.images || [];
       this.plugins = [];
-      this.imagePlaceholder = options.imagePlaceholder || false; // Set default value
+      this.placeholderEffect = options.placeholderEffect || false; // Set default value
 
       if (options.containerClass) {
          this.container.classList.add(...options.containerClass.split(" "));
@@ -84,9 +84,10 @@ export class Collagio {
    async render() {
       this.container.innerHTML = "";
       const CollageClass = this.collages[this.layout] || this.collages.default;
+
       if (CollageClass) {
          const collageInstance = new CollageClass();
-         await collageInstance.render(this.container, this.images, CollageUtils, this.imagePlaceholder);
+         await collageInstance.render(this.container, this.images, CollageUtils, this.placeholderEffect);
       } else {
          console.error("No layout class available.");
       }
