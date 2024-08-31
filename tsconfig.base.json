@@ -1,0 +1,24 @@
+{
+  "composite": true,
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@collagio/core": ["packages/collagio/src/index.ts"],
+      "@collagio/layouts-grid": ["packages/layouts/grid/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

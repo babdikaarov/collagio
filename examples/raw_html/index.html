@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Collagio Example</title>
+      <link rel="stylesheet" href="../../src/layouts/gridCollageStyle.css" />
+      <style>
+         /* Add some basic styling */
+         body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+         }
+
+         h1 {
+            text-align: center;
+         }
+
+         .collage-container {
+            margin-top: 30px;
+         }
+
+         /* Container for buttons */
+         .layout-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+         }
+
+         .layout-buttons button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+         }
+      </style>
+   </head>
+   <body>
+      <h1>Collagio Library Example</h1>
+
+      <div class="layout-buttons">
+         <button onclick="renderBaseCollage()">Base Collage Layout</button>
+         <button onclick="renderGridCollage()">Grid Collage Layout</button>
+         <button onclick="addElement()">add element</button>
+      </div>
+
+      <div id="collage-container" class="collage-container"></div>
+
+      <script type="module">
+         import { CreateCollagio } from "../../src/core/CreateCollagio.js";
+         import { GridCollageLayout } from "../../src/layouts/GridCollageLayout.js";
+         let counter = 0;
+
+         const collage = new CreateCollagio()
+            .setSelector("#collage-container")
+            .addCollageLayout("grid", GridCollageLayout)
+            .build();
+         collage.setElements(generateElements(10));
+
+         function renderBaseCollage() {
+            collage.updateLayout("default");
+         }
+
+         function renderGridCollage() {
+            collage.updateLayout("grid");
+         }
+         function addElement() {
+            counter++;
+            const img = document.createElement("img");
+            img.src = `https://placehold.co/600x400?text=Image+${counter}`; //https://picsum.photos/200/300
+            img.alt = `Image ${counter}`;
+            img.className = "myImage";
+            collage.addElement(img);
+         }
+
+         function generateElements(count) {
+            const elements = [];
+            for (let i = 1; i <= count; i++) {
+               counter = i;
+               const img = document.createElement("img");
+               img.src = `https://placehold.co/600x400?text=Image+${i}`; //https://picsum.photos/200/300
+               img.alt = `Image ${i}`;
+               img.className = "myImage";
+               elements.push(img);
+            }
+            return elements;
+         }
+         // Attach the functions to the window object to make them globally accessible
+         window.renderBaseCollage = renderBaseCollage;
+         window.renderGridCollage = renderGridCollage;
+         window.addElement = addElement;
+         // Initial render with the default layout
+      </script>
+   </body>
+</html>
