@@ -1,0 +1,17 @@
+{
+  "name": "layouts-grid",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/layouts/grid/src",
+  "projectType": "library",
+  "tags": ["type:layouts"],
+
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/layouts/grid/jest.config.ts"
+      }
+    }
+  }
+}

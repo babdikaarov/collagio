@@ -1,0 +1,28 @@
+/* GridCollageLayout Styles */
+.grid-collage-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensures that elements are responsive and fill the grid cells */
+.grid-collage-item {
+  width: 100%;
+  height: auto;
+  overflow: hidden; /* Prevents overflow and potential layout shifting */
+  box-sizing: border-box;
+  transition: transform 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+/* Optional: Add a hover effect for grid items */
+.grid-collage-item:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+@media (max-width: 400px) {
+  .grid-collage-container {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "collagio",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/collagio/src",
+  "projectType": "library",
+  "tags": ["type:core"],
+  "// targets": "to see all targets run: nx show project collagio --web",
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/collagio/jest.config.ts"
+      }
+    }
+  }
+}

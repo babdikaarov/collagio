@@ -1,0 +1,8 @@
+{
+  "name": "@collagio/core",
+  "version": "0.0.1",
+  "dependencies": {},
+  "main": "./index.cjs",
+  "module": "./index.js",
+  "private": false
+}
