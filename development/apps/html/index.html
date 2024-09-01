@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Html</title>
+    <base href="/" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <h1>Collagio Library Example</h1>
+
+    <div class="layout-buttons">
+      <button onclick="renderBaseCollage()">Base Collage Layout</button>
+      <button onclick="renderGridCollage()">Grid Collage Layout</button>
+      <button onclick="addElement()">add element</button>
+    </div>
+
+    <div id="collage-container" class="collage-container"></div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
