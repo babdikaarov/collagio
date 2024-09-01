@@ -1,9 +1,4 @@
 {
-  "pluginsConfig": {
-    "@nx/js": {
-      "analyzeSourceFiles": true
-    }
-  },
   "extends": "nx/presets/npm.json",
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "nxCloudAccessToken": "NzEzN2Y0NjYtMjA5OC00OTIxLTkwZDktN2RiZGI5YmY3MjQ1fHJlYWQtd3JpdGU=",
@@ -24,6 +19,12 @@
       }
     },
     {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
+    },
+    {
       "plugin": "@nx/cypress/plugin",
       "options": {
         "targetName": "e2e",
@@ -32,5 +33,18 @@
         "ciTargetName": "e2e-ci"
       }
     }
-  ]
+  ],
+  "targetDefaults": {
+    "build": {
+      "cache": true
+    },
+    "test": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    }
+  },
+  "jestConfig": "<string>",
+  "coverageReporters": ["<string>"]
 }

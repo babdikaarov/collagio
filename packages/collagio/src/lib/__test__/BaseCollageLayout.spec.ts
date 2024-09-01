@@ -6,7 +6,7 @@ describe('BaseCollageLayout', () => {
 
   beforeEach(() => {
     container = document.createElement('div');
-    elements = [document.createElement('div'), document.createElement('span')];
+    elements = [document.createElement('div'), document.createElement('img')];
   });
 
   test('should render elements correctly', () => {
@@ -15,6 +15,6 @@ describe('BaseCollageLayout', () => {
 
     expect(container.children.length).toBe(2);
     expect(container.children[0].tagName).toBe('DIV');
-    expect(container.children[1].tagName).toBe('SPAN');
+    expect(container.children[1].tagName).toBe('IMG');
   });
 });

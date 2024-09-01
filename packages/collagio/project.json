@@ -12,6 +12,7 @@
       "options": {
         "jestConfig": "packages/collagio/jest.config.ts"
       }
+      
     }
   }
 }
