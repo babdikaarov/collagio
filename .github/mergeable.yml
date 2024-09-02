@@ -3,10 +3,10 @@ mergeable:
   - when: pull_request.*
     name: 'Require Issue Link'
     validate:
-      - do: title
+      - do: description
         must_include:
-          regex: '#\d+'
-        message: 'Please link to an issue in the title (e.g., Fixes #123).'
+          regex: 'Fixes #\d+'
+        message: 'Please link to an issue in mentioning (Fixes #123) #\d+ issue number.'
 
   - when: pull_request.*
     name: 'Require Labels'

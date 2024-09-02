@@ -1,9 +1,4 @@
 {
-  "pluginConfigs": {
-    "@nx/js": {
-      "analyzeSourceFiles": false
-    }
-  },
   "extends": "nx/presets/npm.json",
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "nxCloudAccessToken": "NzEzN2Y0NjYtMjA5OC00OTIxLTkwZDktN2RiZGI5YmY3MjQ1fHJlYWQtd3JpdGU=",
@@ -67,6 +62,14 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["default", "^default"]
+    }
+  },
+  "generators": {
+    "@nx/web:application": {
+      "style": "css",
+      "linter": "none",
+      "unitTestRunner": "none",
+      "e2eTestRunner": "none"
     }
   }
 }

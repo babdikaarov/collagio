@@ -21,6 +21,7 @@
         "@nx/dependency-checks": [
           "error",
           {
+            "ignoredDependencies": ["@collagio/core"],
             "ignoredFiles": ["{projectRoot}/rollup.config.{js,ts,mjs,mts}"]
           }
         ]

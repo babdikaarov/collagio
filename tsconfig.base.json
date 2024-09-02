@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@collagio/core": ["packages/collagio/src/index.ts"],
-      "@collagio/layouts-grid": ["packages/layouts/grid/src/index.ts"]
+      "@collagio/layouts-grid": ["packages/layouts/grid/src/index.ts"],
+      "@test/core": ["packages/collagio/dist"],
+      "@test/layouts-grid": ["packages/layouts/grid/dist"]
     }
   },
   "exclude": ["node_modules", "tmp"]

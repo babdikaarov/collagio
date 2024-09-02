@@ -1,5 +1,6 @@
 {
   "name": "@collagio/layouts-grid",
+  
   "version": "0.0.1",
   "dependencies": {
     "@collagio/core": "^0"

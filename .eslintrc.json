@@ -2,6 +2,7 @@
   "root": true,
   "ignorePatterns": ["**/*"],
   "plugins": ["@nx"],
+
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -13,7 +14,11 @@
             "allow": ["type:core"],
             "depConstraints": [
               {
-                "sourceTag": "*",
+                "sourceTag": "type:layouts",
+                "onlyDependOnLibsWithTags": ["type:core"]
+              },
+              {
+                "sourceTag": "type:dev",
                 "onlyDependOnLibsWithTags": ["*"]
               }
             ]
