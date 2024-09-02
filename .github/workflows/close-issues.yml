@@ -1,0 +1,48 @@
+name: Close Referenced Issues
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  close-issues:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v3
+
+      - name: Extract PR number
+        id: extract_pr
+        run: |
+          PR_NUMBER=$(git log -1 --pretty=format:"%s" | grep -o "#[0-9]*" | cut -d"#" -f2)
+          echo "::set-output name=PR_NUMBER::$PR_NUMBER"
+
+      - name: Get PR details
+        id: get_pr
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const pr_number = ${{ steps.extract_pr.outputs.PR_NUMBER }};
+            const { data: pr } = await github.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr_number
+            });
+            return pr.body;
+
+      - name: Close referenced issues
+        if: ${{ steps.extract_pr.outputs.PR_NUMBER != '' }}
+        run: |
+          ISSUE_REF_REGEX='Fixes #[0-9]+'
+          PR_BODY="${{ steps.get_pr.outputs.result }}"
+          if [[ "$PR_BODY" =~ $ISSUE_REF_REGEX ]]; then
+            ISSUE_NUMBERS=$(echo "$PR_BODY" | grep -o "Fixes #[0-9]*" | grep -o "[0-9]*")
+            for ISSUE_NUMBER in $ISSUE_NUMBERS; do
+              gh issue close $ISSUE_NUMBER -R $GITHUB_REPOSITORY
+            done
+          else
+            echo "No issues to close."
+          fi

@@ -1,0 +1,26 @@
+name: Validate Pull Request
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  validate-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v3
+
+      - name: Validate PR Description
+        id: validate
+        run: |
+          ISSUE_REF_REGEX='Fixes #[0-9]+'
+          if ! grep -q "$ISSUE_REF_REGEX" "$GITHUB_EVENT_PATH"; then
+            echo "Error: Pull request description must include a reference to an issue (e.g., 'Fixes #123')."
+            exit 1
+          fi
+
+      - name: Set status to failure if validation fails
+        if: failure()
+        run: |
+          gh pr review --reject --body "Pull request description must include a reference to an issue (e.g., 'Fixes #123')."
