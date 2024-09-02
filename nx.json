@@ -1,4 +1,9 @@
 {
+  "pluginConfigs": {
+    "@nx/js": {
+      "analyzeSourceFiles": false
+    }
+  },
   "extends": "nx/presets/npm.json",
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "nxCloudAccessToken": "NzEzN2Y0NjYtMjA5OC00OTIxLTkwZDktN2RiZGI5YmY3MjQ1fHJlYWQtd3JpdGU=",
@@ -46,6 +51,7 @@
   ],
   "targetDefaults": {
     "build": {
+      "dependsOn": ["^build"],
       "cache": true
     },
     "test": {
@@ -61,16 +67,6 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["default", "^default"]
-    }
-  },
-  "jestConfig": "<string>",
-  "coverageReporters": ["<string>"],
-  "generators": {
-    "@nx/web:application": {
-      "style": "css",
-      "linter": "eslint",
-      "unitTestRunner": "vitest",
-      "e2eTestRunner": "cypress"
     }
   }
 }

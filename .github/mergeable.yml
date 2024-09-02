@@ -1,0 +1,25 @@
+version: 2
+mergeable:
+  - when: pull_request.*
+    name: 'Require Issue Link'
+    validate:
+      - do: title
+        must_include:
+          regex: '#\d+'
+        message: 'Please link to an issue in the title (e.g., Fixes #123).'
+
+  - when: pull_request.*
+    name: 'Require Labels'
+    validate:
+      - do: labels
+        must_include:
+          regex: '^bug|enhancement|documentation$'
+        message: 'PR must have one of the following labels: bug, enhancement, documentation.'
+
+  - when: pull_request.*
+    name: 'Review Approval'
+    validate:
+      - do: approvals
+        min:
+          count: 1
+        message: 'At least one approval is required before merging.'

@@ -38,7 +38,14 @@ function generateElements(count: number) {
   return elements;
 }
 
+declare global {
+  interface Window {
+    renderBaseCollage: () => void;
+    renderGridCollage: () => void;
+    addElement: () => void;
+  }
+}
 // Attach the functions to the window object for use in the HTML
-(window as any).renderBaseCollage = renderBaseCollage;
-(window as any).renderGridCollage = renderGridCollage;
-(window as any).addElement = addElement;
+window.renderBaseCollage = renderBaseCollage;
+window.renderGridCollage = renderGridCollage;
+window.addElement = addElement;
