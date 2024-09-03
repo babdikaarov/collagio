@@ -2,7 +2,7 @@ import { Collagio } from './Collagio';
 import { BaseCollageLayout } from './BaseCollageLayout';
 
 /**
- * A builder class for creating and configuring a Collagio instance.
+ * A builder class for creating and  configuring a Collagio instance.
  */
 export class CreateCollagio {
   /**

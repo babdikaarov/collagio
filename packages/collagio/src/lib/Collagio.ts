@@ -100,9 +100,9 @@ export class Collagio {
       console.error(error);
 
       // Fallback to default layout if available
-      if (this.collages["default"]) {
+      if (this.collages['default']) {
         console.warn('Falling back to default layout.');
-        const DefaultLayoutClass = this.collages["default"];
+        const DefaultLayoutClass = this.collages['default'];
         this.collageInstance = new DefaultLayoutClass(
           this.container,
           this.elements,
@@ -164,7 +164,7 @@ export class Collagio {
    * @param {string | Function} nameOrPlugin - The name of the plugin or the plugin function itself.
    * @returns {any} - Returns the plugin if a name is provided, otherwise returns void.
    */
-  public use(nameOrPlugin: string ): any {
+  public use(nameOrPlugin: string): any {
     if (typeof nameOrPlugin === 'string') {
       // Use plugin by name
       const plugin = this.plugins[nameOrPlugin];

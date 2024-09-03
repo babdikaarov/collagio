@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BaseCollageLayout } from '@collagio/core';
 import './layouts-grid.css';
 /**

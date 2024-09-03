@@ -5,13 +5,13 @@ module.exports = withNx(
     main: './src/index.ts',
     outputPath: './dist',
     tsConfig: './tsconfig.lib.json',
-    compiler: 'swc',
+    compiler: 'tcs',
     format: ['cjs', 'esm'],
     assets: [{ input: '.', output: '.', glob: '*.md' }],
   },
   {
     // Provide additional rollup configuration here. See: https://rollupjs.org/configuration-options
     // e.g.
-    output: { sourcemap: true },
+    // output: { sourcemap: true },
   }
 );
