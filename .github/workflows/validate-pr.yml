@@ -11,16 +11,33 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v3
 
-      - name: Validate PR Description
+      - name: Validate PR Description and Comments
         id: validate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ISSUE_REF_REGEX='Fixes #[0-9]+'
-          if ! grep -q "$ISSUE_REF_REGEX" "$GITHUB_EVENT_PATH"; then
-            echo "Error: Pull request description must include a reference to an issue (e.g., 'Fixes #123')."
-            exit 1
+
+          # Check the PR description for the issue reference
+          PR_DESCRIPTION=$(jq -r '.pull_request.body' "$GITHUB_EVENT_PATH")
+          if echo "$PR_DESCRIPTION" | grep -q "$ISSUE_REF_REGEX"; then
+            echo "Issue reference found in PR description."
+            exit 0
           fi
+
+          # If not found in the description, check the PR comments
+          COMMENTS_URL=$(jq -r '.pull_request._links.comments.href' "$GITHUB_EVENT_PATH")
+          COMMENTS=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "$COMMENTS_URL")
+
+          if echo "$COMMENTS" | grep -q "$ISSUE_REF_REGEX"; then
+            echo "Issue reference found in PR comments."
+            exit 0
+          fi
+
+          echo "Error: Pull request must include a reference to an issue (e.g., 'Fixes #123') either in the description or in the comments."
+          exit 1
 
       - name: Set status to failure if validation fails
         if: failure()
         run: |
-          gh pr review --reject --body "Pull request description must include a reference to an issue (e.g., 'Fixes #123')."
+          gh pr review --reject --body "Pull request description or comments must include a reference to an issue (e.g., 'Fixes #123')."
