@@ -13,6 +13,8 @@ jobs:
 
       - name: Validate PR Description or Comments
         id: validate
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ISSUE_REF_REGEX='Fixes #[0-9]+'
           PR_COMMENTS=$(gh pr view "$GITHUB_REF" --json comments --jq '.comments[].body')
@@ -25,5 +27,7 @@ jobs:
 
       - name: Set status to request changes if validation fails
         if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr review --request-changes --body "Pull request description or comments must include a reference to an issue (e.g., 'Fixes #123')."
