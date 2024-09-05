@@ -1,8 +1,8 @@
 {
   "name": "@collagio/layouts-grid",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "dependencies": {
-    "@collagio/core": "^0.0.2"
+    "@collagio/core": "^0.0.3"
   },
   "main": "./index.cjs",
   "module": "./index.js",
