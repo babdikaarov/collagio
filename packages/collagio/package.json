@@ -1,6 +1,6 @@
 {
   "name": "@collagio/core",
-  "version": "0.0.0",
+  "version": "0.0.1-0",
   "dependencies": {},
   "main": "./index.cjs",
   "module": "./index.js",
