@@ -1,6 +1,6 @@
 {
   "name": "@collagio/core",
-  "version": "0.0.1-2",
+  "version": "0.0.1-3",
   "description": "Core module for Collagio - A framework-agnostic collage layout library",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
