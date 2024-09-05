@@ -1,6 +1,6 @@
 {
   "name": "@collagio/core",
-  "version": "0.0.1-5",
+  "version": "0.0.1-6",
   "description": "Core module for Collagio - A framework-agnostic collage layout library",
   "main": "./index.cjs.js",
   "module": "./index.esm.js",
@@ -13,7 +13,7 @@
   },
   "license": "MIT",
   "files": [
-    "dist/*"
+    "dist/**/*"
   ],
   "publishConfig": {
     "access": "public"
