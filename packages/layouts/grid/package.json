@@ -1,10 +1,10 @@
 {
   "name": "@collagio/layouts-grid",
-  "version": "0.0.4-1",
+  "version": "0.0.1-5",
   "description": "Grid layout module for Collagio - A framework-agnostic collage layout library",
-  "main": "./dist/index.cjs.js",
-  "module": "./dist/index.esm.js",
-  "types": "./dist/index.esm.d.ts",
+  "main": "./index.cjs.js",
+  "module": "./index.esm.js",
+  "types": "./index.esm.d.ts",
   "private": false,
   "author": {
     "name": "Beksultan Abdikaarov",
@@ -13,13 +13,10 @@
   },
   "license": "MIT",
   "files": [
-    "dist",
-    "layouts-grid.css",
-    "README.md",
-    "CHANGELOG.md"
+    "dist/*"
   ],
   "dependencies": {
-    "@collagio/core": "^0.0.1-4"
+    "@collagio/core": "^0.0.1-5"
   },
   "publishConfig": {
     "access": "public"
