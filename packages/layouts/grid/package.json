@@ -1,6 +1,6 @@
 {
   "name": "@collagio/layouts-grid",
-  "version": "0.0.1-6",
+  "version": "0.0.1-7",
   "description": "Grid layout module for Collagio - A framework-agnostic collage layout library",
   "main": "./index.cjs.js",
   "module": "./index.esm.js",
@@ -16,7 +16,7 @@
     "dist/**/*"
   ],
   "dependencies": {
-    "@collagio/core": "^0.0.1-6"
+    "@collagio/core": "^0.0.1-7"
   },
   "publishConfig": {
     "access": "public"
