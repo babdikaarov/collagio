@@ -1,10 +1,22 @@
 {
   "name": "@collagio/core",
-  "version": "0.0.1-0",
-  "dependencies": {},
-  "main": "./index.cjs",
-  "module": "./index.js",
+  "version": "0.0.1-1",
+  "description": "Core module for Collagio - A framework-agnostic collage layout library",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.esm.d.ts",
   "private": false,
+  "author": {
+    "name": "Beksultan Abdikaarov",
+    "email": "babdikaarov@gmail.com",
+    "url": "https://github.com/babdikaarov"
+  },
+  "license": "MIT",
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "publishConfig": {
     "access": "public"
   }
